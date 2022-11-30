@@ -28,7 +28,7 @@
                     </ul>
                     <form action="script.php" method="post">
                         <div class="mb-3 d-flex mt-2">
-                            <input type="text" name="task" id="task" class="form-control rounded-0" placeholder="Add a new task" aria-describedby="taskHelper">
+                            <input type="text" name="task" id="task" class="form-control rounded-0" placeholder="Add a new task" aria-describedby="taskHelper" v-model="newTask" @keyup.enter="addTasks" @click="addTasks">
                             <button type="submit" class="btn btn-primary rounded-0">Add Task</button>
                         </div>
                     </form>
