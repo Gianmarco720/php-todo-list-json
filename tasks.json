@@ -1,1 +1,22 @@
-["Learn HTML","Learn CSS","Learn JavaScript","Learn PHP","Responsive Design","Lavare la macchina","Ciao"]
+[
+    {
+        "title": "Learn HTML",
+        "done": "false"
+    },
+    {
+        "title": "Learn CSS",
+        "done": "false"
+    },
+    {
+        "title": "Learn JavaScript",
+        "done": "false"
+    },
+    {
+        "title": "Learn PHP",
+        "done": "false"
+    },
+    {
+        "title": "Responsive Design",
+        "done": "false"
+    }
+]

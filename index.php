@@ -1,57 +1,50 @@
 <!doctype html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-    <title>Todo List</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
-    <!-- My Css -->
-    <link rel="stylesheet" href="./style.css">
-
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Task app</title>
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3' crossorigin='anonymous'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+    <link href='./style.css' rel='stylesheet'>
 </head>
 
-<body>
-    <div id="app">
-        <header class="text-center">
-            <h1 class="fw-light">Todo List</h1>
-        </header>
-        <main>
-            <div class="container d-flex flex-column align-items-center">
-                <div class="col-4">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item" v-for="task in tasks">{{task}}</li>
+<body class="bg-dark d-flex justify-content-center text-white vh-100">
+    <div id='app' class="col-4">
+
+        <div class="container mt-5">
+            <div class="col-12">
+                <h1 class="display-2 text-warning text-center">Tasks</h1>
+
+                <div class="add_task d-flex mb-2">
+                    <input type="text" v-model="newTask" @keyup.enter="storeTask" class="w-100 rounded-0">
+                    <button type="button" class="btn btn-outline-warning rounded-0" @click="storeTask">Add</button>
+
+                </div>
+                <div class="tasks" v-if="tasks">
+                    <ul class="list-group list-flush">
+                        <li v-for="(task, index) in tasks" class="d-flex justify-content-between list-group-item" :class="{'text-decoration-line-through': task.done}">
+                            <span @click.stop="task.done = !task.done">
+                                {{ task.title }}
+                            </span>
+                            <button class="btn btn-danger btn-sm"><i class="fas fa-trash" @click.stop="deleteTask(index)"></i></button>
+                        </li>
                     </ul>
-                    <form action="script.php" method="post">
-                        <div class="mb-3 d-flex mt-2">
-                            <input type="text" name="task" id="task" class="form-control rounded-0" placeholder="Add a new task" aria-describedby="taskHelper" v-model="newTask" @keyup.enter="addTasks" @click="addTasks">
-                            <button type="submit" class="btn btn-primary rounded-0">Add Task</button>
-                        </div>
-                    </form>
+                </div>
+                <div v-else>
+                    <p class="lead">No tasks</p>
                 </div>
             </div>
-        </main>
+        </div>
+
     </div>
 
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
-
-    <!-- Axios CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <!-- Vue CDN -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-
-    <!-- My Script -->
-    <script src="./app.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'></script>
+    <!-- Development only cdn, disable in production -->
+    <script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+    <script src='./app.js'></script>
 </body>
 
 </html>
